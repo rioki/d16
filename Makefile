@@ -6,7 +6,7 @@ CFLAGS += -g -Wall -O0
 
 .PHONY: all clean
 
-all: dasm16 dcpu16
+all: dasm16 dcpu16 example.d16
 
 # TODO clean should be platform independent
 # http://stackoverflow.com/questions/10024486/portable-make-clean-rule
@@ -27,3 +27,6 @@ generate.o: generate.c generate.h
 
 dcpu16.o: dcpu16.c cpu.h
 cpu.o: cpu.c cpu.h
+
+example.d16: example.a16
+	./dasm16 example.a16 example.d16

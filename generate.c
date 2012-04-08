@@ -112,10 +112,8 @@ int is_simple_opcode(int opcode)
 	}
 }
 
-unsigned short swap_eniness(unsigned short x) 
-{
-	return ((x<<8)|(x>>8));
-}
+/* implemented in cpu.c */
+unsigned short swap_eniness(unsigned short x);
 
 int generate_executable(FILE* fp)
 {
@@ -217,7 +215,7 @@ int generate(const char* file, program_t* p)
 	
     if (file != NULL)
     {        
-        fp = fopen(file, "w");
+        fp = fopen(file, "wb");
         if (fp == NULL)
         {
             fprintf(stderr, "Failed to open %s\n", file);

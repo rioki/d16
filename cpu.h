@@ -53,32 +53,43 @@ typedef enum
  * Register
  **/
 typedef enum
-{
-	A_VALUE = 0x0, 
-	B_VALUE = 0x1,  
-	C_VALUE = 0x2, 
-	X_VALUE = 0x3, 
-	Y_VALUE = 0x4, 
-	Z_VALUE = 0x5, 
-	I_VALUE = 0x6,
-	J_VALUE = 0x7,
-	/*	Whatever that means:
-		0x08-0x0f: [register]
-		0x10-0x17: [next word + register]
-	*/
+{	
+    A_REGISTER = 0x0, 
+	B_REGISTER = 0x1,  
+	C_REGISTER = 0x2, 
+	X_REGISTER = 0x3, 
+	Y_REGISTER = 0x4, 
+	Z_REGISTER = 0x5, 
+	I_REGISTER = 0x6,
+	J_REGISTER = 0x7,
+	VALUE_A = 0x8, 
+	VALUE_B = 0x9,  
+	VALUE_C = 0xA, 
+	VALUE_X = 0xB, 
+	VALUE_Y = 0xC, 
+	VALUE_Z = 0xD, 
+	VALUE_I = 0xE,
+	VALUE_J = 0xF,
+    NEXT_VALUE_A = 0x10,
+    NEXT_VALUE_B = 0x11,
+    NEXT_VALUE_C = 0x12,
+    NEXT_VALUE_X = 0x13,
+    NEXT_VALUE_Y = 0x14,
+    NEXT_VALUE_Z = 0x15,
+    NEXT_VALUE_I = 0x16,
+    NEXT_VALUE_J = 0x17,    
 	POP_VALUE = 0x18,	
     PEEK_VALUE = 0x19,
     PUSH_VALUE = 0x1a,
-    SP_VALUE = 0x1b,
-    PC_VALUE = 0x1c,
-    O_VALUE = 0x1d
-	/*
-		Whatever that means:
-		0x1e: [next word]
-        0x1f: next word (literal)
-	 */
+    SP_REGISTER = 0x1b,
+    PC_REGISTER = 0x1c,
+    O_REGISTER = 0x1d,
+	NEXT_VALUE = 0x1e,
+    NEXT_LITERAL = 0x1f,
 	/* 0x20-0x3f literal values (0x00-0x1f) */
 } value_t;
+
+int execute(const unsigned short* program, unsigned int size);
 
 const char* get_opcode_name(int opcode);
 
