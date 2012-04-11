@@ -113,7 +113,7 @@ int is_simple_opcode(int opcode)
 }
 
 /* implemented in cpu.c */
-unsigned short swap_eniness(unsigned short x);
+unsigned short swap_endienness(unsigned short x);
 
 int generate_executable(FILE* fp)
 {
@@ -188,9 +188,9 @@ int generate_executable(FILE* fp)
             }
 		}
 		
-		buff[0] = swap_eniness(buff[0]);
-		buff[1] = swap_eniness(buff[1]);
-		buff[2] = swap_eniness(buff[2]);
+		buff[0] = swap_endienness(buff[0]);
+		buff[1] = swap_endienness(buff[1]);
+		buff[2] = swap_endienness(buff[2]);
 		
 		fwrite(&buff, 2, size, fp);
 	}

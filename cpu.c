@@ -62,7 +62,7 @@ static unsigned short* PROG = RAM;
 /* the time to simulate one "cylcle" */
 static unsigned int cycle_time = 100; 
 
-unsigned short swap_eniness(unsigned short x) 
+unsigned short swap_endienness(unsigned short x) 
 {
     return ((x<<8)|(x>>8));
 }
@@ -91,14 +91,14 @@ unsigned short get_next_word()
     unsigned short value = PROG[PC];
     PC++;
     PC = PC % PROG_SIZE;
-    return swap_eniness(value);
+    return swap_endienness(value);
     // return value;
 }
 
 unsigned short peek_next_word()
 {
     unsigned short value = PROG[PC];
-    return swap_eniness(value);
+    return swap_endienness(value);
 }
 
 unsigned short* decode_arg(unsigned short arg, unsigned short* literal)
