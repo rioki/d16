@@ -257,7 +257,11 @@ int op_add(unsigned short arg1, unsigned short arg2)
         return -1;
     }
     
-    *dest += *value;
+    unsigned long tmp = *dest + *value;
+    
+    O = tmp & 0xFFFF0000 >> 16;
+    *dest = tmp & 0x0000FFFF;
+    
     return 0;
 }
 
@@ -275,7 +279,11 @@ int op_sub(unsigned short arg1, unsigned short arg2)
         return -1;
     }
     
-    *dest -= *value;
+    unsigned long tmp = *dest - *value;
+    
+    O = tmp & 0xFFFF0000 >> 16;
+    *dest = tmp & 0x0000FFFF;
+    
     return 0;
 }
 
@@ -293,7 +301,11 @@ int op_mul(unsigned short arg1, unsigned short arg2)
         return -1;
     }
     
-    *dest *= *value;
+    unsigned long tmp = *dest * *value;
+    
+    O = tmp & 0xFFFF0000 >> 16;
+    *dest = tmp & 0x0000FFFF;
+    
     return 0;
 }
 
@@ -311,7 +323,11 @@ int op_div(unsigned short arg1, unsigned short arg2)
         return -1;
     }
     
-    *dest /= *value;
+    unsigned long tmp = *dest / *value;
+    
+    O = tmp & 0xFFFF0000 >> 16;
+    *dest = tmp & 0x0000FFFF;
+    
     return 0;
 }
 
@@ -329,7 +345,8 @@ int op_mod(unsigned short arg1, unsigned short arg2)
         return -1;
     }
     
-    *dest %= *value;
+    *dest = *dest % *value;
+    
     return 0;
 }      
 
@@ -347,7 +364,11 @@ int op_shl(unsigned short arg1, unsigned short arg2)
         return -1;
     }
     
-    *dest <<= *value;
+    unsigned long tmp = *dest << *value;
+    
+    O = tmp & 0xFFFF0000 >> 16;
+    *dest = tmp & 0x0000FFFF;
+    
     return 0;
 }      
 
@@ -365,7 +386,12 @@ int op_shr(unsigned short arg1, unsigned short arg2)
         return -1;
     }
     
-    *dest >>= *value;
+    unsigned long tmp = *dest >> *value;
+    
+    O = ((*dest << 16) >> *value) & 0xF0000FFF;
+    *dest = tmp & 0xF0000FFF;
+    
+    
     return 0;
 }
 
